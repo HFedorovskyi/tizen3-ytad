@@ -1,10 +1,11 @@
+[English](README.md) · [Русский](README.ru.md)
+
 # tizen3-ytad
 
 Ad-free stock YouTube on Samsung 2017 TVs (Tizen 3.0). A local TLS MITM: the app believes it is talking to YouTube while the proxy strips ads out of the responses. Nothing is installed over the stock app — no sideloaded widgets, no replacement client.
 
 Requires the [tizen3-root](https://github.com/HFedorovskyi/tizen3-root) injector (package `tizenroot`).
 
-**Русская версия:** [README.ru.md](README.ru.md)
 
 ## What happens on the TV
 

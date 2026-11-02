@@ -1,10 +1,11 @@
+[English](README.md) · [Русский](README.ru.md)
+
 # tizen3-ytad
 
 Стоковый YouTube без рекламы на Samsung TV 2017 (Tizen 3.0). Локальный TLS-MITM: приложение думает, что говорит с YouTube, прокси вырезает рекламу из ответов. Поверх стокового приложения ничего не ставится — ни sideload-виджетов, ни замены клиента.
 
 Требует root-инжектор [tizen3-root](https://github.com/HFedorovskyi/tizen3-root) (пакет `tizenroot`).
 
-**English version:** [README.md](README.md)
 
 ## Что происходит на ТВ
 
