@@ -36,6 +36,27 @@
 0.0.0.0 static.doubleclick.net
 0.0.0.0 qoe.samsungcloud.tv
 0.0.0.0 nrdp.logs.netflix.com
+# --- video ads / tracking (google ad manager behind yt player + samsung ads) ---
+0.0.0.0 googleads.g.doubleclick.net
+0.0.0.0 googleads4.g.doubleclick.net
+0.0.0.0 ad.doubleclick.net
+0.0.0.0 adclick.g.doubleclick.net
+0.0.0.0 pubads.g.doubleclick.net
+0.0.0.0 securepubads.g.doubleclick.net
+0.0.0.0 cm.g.doubleclick.net
+0.0.0.0 stats.g.doubleclick.net
+0.0.0.0 pagead2.googlesyndication.com
+0.0.0.0 ade.googlesyndication.com
+0.0.0.0 tpc.googlesyndication.com
+0.0.0.0 www.googletagservices.com
+0.0.0.0 adservice.google.com
+0.0.0.0 adservice.google.de
+0.0.0.0 googleadservices.com
+0.0.0.0 www.googleadservices.com
+0.0.0.0 s0.2mdn.net
+0.0.0.0 s1.2mdn.net
+0.0.0.0 s2.2mdn.net
+0.0.0.0 config.samsungads.com
 # --- OTA / firmware update (comment out to allow updates again) ---
 0.0.0.0 samsungotn.net
 0.0.0.0 www.samsungotn.net

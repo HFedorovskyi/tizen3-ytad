@@ -165,6 +165,13 @@ var srv = https.createServer({
           try {
             var rj = JSON.parse(b.toString('utf8'));
             if (rj && rj.context && rj.context.client) {
+              var oc = rj.context.client.clientName + '/' + rj.context.client.clientVersion;
+              log('REQCTX ' + req.url + ' client=' + oc + ' vid=' + (rj.videoId || '-') +
+                  ' params=' + String(rj.params || '-').slice(0, 48) + ' body=' + b.length);
+              try {
+                fs.writeFileSync('/tmp/yt_req_' + (req.url.indexOf('ad_break') >= 0 ? 'break' : 'player') + '.json',
+                  b.toString('utf8'));
+              } catch (e) {}
               rj.context.client.clientName = 'WEB';
               rj.context.client.clientVersion = '2.20241126.01.00';
               b = new Buffer(JSON.stringify(rj), 'utf8');
@@ -224,7 +231,9 @@ var srv = https.createServer({
             if (hits.length) log('ADK ' + req.url + ' ' + hits.join(', '));
             if (obj && plain.length < 4 * 1024 * 1024) {
               if (req.url.indexOf('/youtubei/v1/player') >= 0) {
-                try { fs.writeFileSync('/tmp/yt_player.json', plain); } catch (e) {}
+                var isBreak = req.url.indexOf('ad_break') >= 0;
+                try { fs.writeFileSync(isBreak ? '/tmp/yt_break_raw.json' : '/tmp/yt_player.json', plain); } catch (e) {}
+                try { fs.writeFileSync(isBreak ? '/tmp/yt_break_clean.json' : '/tmp/yt_player_clean.json', txt); } catch (e) {}
               } else if (req.url.indexOf('/youtubei/v1/browse') >= 0) {
                 try { fs.writeFileSync('/tmp/yt_browse.json', plain); } catch (e) {}
               }

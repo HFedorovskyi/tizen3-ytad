@@ -61,6 +61,11 @@ for r in $($IPT -t nat -S OUTPUT 2>/dev/null | grep -- '--dport 53' | grep -v --
   $IPT -t nat -D OUTPUT -p udp -d "$2" --dport 53 -j DNAT --to-destination 127.0.0.1:53 2>/dev/null
 done
 
+# 5b. catch every resolver, not just the gateway: the app's own resolver may go
+# straight to 8.8.8.8 and get real IPs, which lets the player bypass the MITM.
+$IPT -t nat -C OUTPUT -p udp --dport 53 -j DNAT --to-destination 127.0.0.1:53 2>/dev/null || \
+  $IPT -t nat -A OUTPUT -p udp --dport 53 -j DNAT --to-destination 127.0.0.1:53 2>/dev/null
+
 # 5a. legacy pin: a hosts file that maps the youtube names to the fake 203.0.113.7
 $IPT -t nat -C OUTPUT -p tcp -d 203.0.113.7 --dport 443 -j DNAT --to-destination 127.0.0.1:443 2>/dev/null || \
   $IPT -t nat -A OUTPUT -p tcp -d 203.0.113.7 --dport 443 -j DNAT --to-destination 127.0.0.1:443 2>/dev/null
